@@ -1,3 +1,0 @@
-minostro.github.io
-==================
-

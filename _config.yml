@@ -9,4 +9,4 @@ url             : "http://minostro.com" # the base hostname & protocol for your 
 github_username :  minostro
 
 # Build settings
-markdown        : redcarpet
+markdown        : kramdown

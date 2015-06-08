@@ -46,3 +46,14 @@ int main(int args, char *argv[]) {
   return 0;
 }
 {% endhighlight %}
+
+The output when running this program:
+
+{% highlight bash %}
+➜ ./a.out
+value: 40
+value: 1425650832
+value: 1
+value: 1
+{% endhighlight %}
+

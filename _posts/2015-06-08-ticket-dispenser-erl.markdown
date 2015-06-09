@@ -1,8 +1,8 @@
 ---
 layout: post
-title:  "Ticket Dispenser (Erlang)"
+title:  "Ticket Dispenser"
 date:   2015-06-07 10:44:00
-categories: programming-languages, erlang
+categories: [programming-languages, erlang]
 ---
 
 {% highlight erlang %}

@@ -5,7 +5,7 @@ date:   2015-06-07 10:44:00
 categories: programming-languages
 ---
 
-{% highlight c %}
+{% highlight c linenos=table %}
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -20,14 +20,14 @@ int* fill_array(int* array, int n) {
 
 int* foo() {
   //array will be allocated on the stack, thus it will *NOT*
-  //survive stack-frame livespan.
+  //survive stack-frame lifecycle.
   int array[10];
   return fill_array(array, 10);
 }
 
 int* righ_foo() {
   //array will be allocated on the heap, thus it will
-  //survive stack-frame livespan.
+  //survive stack-frame lifecycle.
   int* array = malloc(10 * sizeof(int));
   return fill_array(array, 10);
 }

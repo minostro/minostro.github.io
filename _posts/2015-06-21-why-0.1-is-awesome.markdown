@@ -10,6 +10,7 @@ I just learned that \\( 0.1_{10} \\) cannot be represented by an exact binary nu
 *What‽*, *How‽*
 
 Let's transform \\( 0.1_{10} \\) to it's equivalent binary number.
+
 i.e: \\( X_{2} \\)
 
 

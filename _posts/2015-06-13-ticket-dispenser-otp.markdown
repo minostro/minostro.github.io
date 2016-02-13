@@ -19,15 +19,25 @@ categories: [programming-languages, erlang, otp]
 %% ------------------------------------------------------------------
 %% API Function Exports
 %% ------------------------------------------------------------------
--export([start_link/0, current_ticket/1, take_ticket/1, reset/1, stop/1,
-                       current_ticket/0, take_ticket/0, reset/0, stop/0]).
-
+-export([start_link/0,
+	 current_ticket/1,
+	 current_ticket/0,
+	 take_ticket/1,
+	 take_ticket/0,
+	 reset/1,
+	 reset/0,
+	 stop/1,
+	 stop/0]).
 
 %% ------------------------------------------------------------------
 %% gen_server Function Exports
 %% ------------------------------------------------------------------
--export([init/1, handle_call/3, handle_cast/2, terminate/2, handle_info/2, code_change/3]).
-
+-export([init/1,
+	 handle_call/3,
+	 handle_cast/2,
+	 terminate/2,
+	 handle_info/2,
+	 code_change/3]).
 
 %% ------------------------------------------------------------------
 %% API Function Definitions

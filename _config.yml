@@ -3,9 +3,9 @@ title           : minostro's Blog
 email           : minostro@minostro.com
 description     : > # this means to ignore newlines until "baseurl:"
   This is the my third attempt to write a blog.  I hope this time I can
-  write more frequently about either my personal or professional life.
+  write more frequently about my personal and professional life.
 baseurl         : "" # the subpath of your site, e.g. /blog/
-url             : "http://minostro.com" # the base hostname & protocol for your site
+url             : "http://www.minostro.com" # the base hostname & protocol for your site
 github_username :  minostro
 
 # Build settings

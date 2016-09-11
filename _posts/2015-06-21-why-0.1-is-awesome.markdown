@@ -1,8 +1,9 @@
 ---
 layout: post
-title:  "Why is 0.1 awesome‽"
-date:   2015-06-21 10:44:00
-categories: [math]
+title: "Why is 0.1 awesome‽"
+date: 2015-06-21 10:44:00
+tag: math
+blog: true
 ---
 
 I just learned that \\( 0.1_{10} \\) cannot be represented by an exact binary number; the resulting binary number is an infinite number.

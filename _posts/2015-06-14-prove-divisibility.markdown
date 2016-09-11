@@ -1,8 +1,11 @@
 ---
 layout: post
-title:  "Prove divisibility"
-date:   2015-06-14 10:44:00
-categories: [math, mathematical-induction]
+title: "Prove divisibility"
+date: 2015-06-14 10:44:00
+tag:
+- math
+- mathematical-induction
+blog: true
 ---
 
 Prove by using mathematical induction that \\( 4^{n} + 2\\) is divisibly by \\(3\\).

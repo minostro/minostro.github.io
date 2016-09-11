@@ -20,15 +20,15 @@ int* fill_array(int* array, int n) {
 
 
 int* foo() {
-  //array will be allocated on the stack, thus it will *NOT*
-  //survive stack-frame lifecycle.
+  //array will be allocated on the stack, thus
+  //it won't live after the stack is reclaimed.
   int array[10];
   return fill_array(array, 10);
 }
 
 int* righ_foo() {
-  //array will be allocated on the heap, thus it will
-  //survive stack-frame lifecycle.
+  //array will be allocated on the heap, thus
+  //it will live after the stack is reclaimed.
   int* array = malloc(10 * sizeof(int));
   return fill_array(array, 10);
 }
@@ -57,4 +57,3 @@ value: 1425650832
 value: 1
 value: 1
 {% endhighlight %}
-

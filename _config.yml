@@ -17,6 +17,7 @@ permalink: /:title/
 
 markdown: kramdown
 highlighter: rouge
+excerpt_separator: ""
 
 # To enable google analytics, supply your token below
 # analytics-google: 'UA-MYANALYTICS'

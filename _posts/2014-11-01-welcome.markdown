@@ -1,8 +1,8 @@
 ---
 layout: post
-title:  "Welcome to my blog!"
-date:   2014-11-01 15:39:28
-categories: main
+title: "Welcome to my blog!"
+date: 2014-11-01 15:39:28
+blog: true
 ---
 This is my third attempt to write a blog.  I don't want to fail this time, so I think I'm going to take this as a good exercise to improve my written English.  No worries, my spoken English is even worst ;-). I'm originally from Iquique - Chile.
 

@@ -1,8 +1,11 @@
 ---
 layout: post
-title:  "Ticket Dispenser"
-date:   2015-06-07 10:44:00
-categories: [programming-languages, erlang]
+title: "Ticket Dispenser"
+date: 2015-06-07 10:44:00
+tag:
+- programming-languages
+- erlang
+blog: true
 ---
 
 {% highlight erlang %}

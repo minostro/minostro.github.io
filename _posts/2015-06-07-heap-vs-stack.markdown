@@ -1,8 +1,9 @@
 ---
 layout: post
-title:  "Heap vs Stack"
-date:   2015-06-07 10:44:00
-categories: programming-languages
+title: "Heap vs Stack"
+date: 2015-06-07 10:44:00
+tag: programming-languages
+blog: true
 ---
 
 {% highlight c linenos=table %}

@@ -1,8 +1,11 @@
 ---
 layout: post
-title:  "Rebar(3) Templates"
-date:   2015-06-13 22:44:00
-categories: [programming-languages, erlang]
+title: "Rebar(3) Templates"
+date: 2015-06-13 22:44:00
+tag:
+- programming-languages
+- erlang
+blog: true
 ---
 
 You need to create first an Erlang file (*curlies should be together*):

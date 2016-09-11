@@ -2,7 +2,11 @@
 layout: post
 title:  "Ticket Dispenser (OTP version)"
 date:   2015-06-13 10:44:00
-categories: [programming-languages, erlang, otp]
+tag:
+- programming-languages
+- erlang
+- otp
+blog: true
 ---
 
 {% highlight erlang %}

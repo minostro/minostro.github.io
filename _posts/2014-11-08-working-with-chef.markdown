@@ -1,9 +1,9 @@
 ---
 layout: post
-title:  "Working with Chef"
-date:   2014-11-08 10:44:00
-category: devops
-tags: [chef]
+title: "Working with Chef"
+date: 2014-11-08 10:44:00
+tags: devops, chef
+blog: true
 ---
 I am learning chef, so I do not have to know by heart all the steps I have to follow in order to get my applications up and running.
 

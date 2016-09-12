@@ -1,6 +1,6 @@
 # main text of home
 name: Milton Inostroza
-bio: A Man who travels the world making a fool of himself
+bio: Nobody trains software developers to be prepared for disasters.  That's why I love Erlang.
 
 # twitter summary info
 description: A blog about technology and stuff related
@@ -46,7 +46,7 @@ email: minostro@minostro.com
 authors:
       minostro:
          name: Milton Inostroza
-         bio: A Man who travels the world making a fool of himself
+         bio: Nobody trains software developers to be prepared for disasters.  That's why I love Erlang.
          external-image: false
          picture: assets/images/profile.jpg
 #     jamesfoster:

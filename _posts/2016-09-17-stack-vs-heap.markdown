@@ -60,11 +60,13 @@ programmer say so.
 
 Based on this definition, when our program is executing **Line 5**, the
 array that was defined in **Line 16** is no longer available.  `my_array`
-was defined within the method execution, thus, by default, it lives
+was defined within the method execution, thus, by default[^1], it lives
 in the Stack.  This means, that as soon as initialize_array finishes,
 the system will free up the portion of the memory where the values of
 my_array live.  Pretty cool, uh?  At this point, there are two
 possible solutions to fix our program:
+
+[^1]: This is the default behavior in Language C. In modern programming languages this can vary.
 
 1. Delete the `initialize_array` function and move its code into the main
 function, or
@@ -113,3 +115,4 @@ some topics that I would like to talk about:
 * How a process is represented by the OS.
 * What would happen with threads?
 * What happens with the memory afterwards?
+

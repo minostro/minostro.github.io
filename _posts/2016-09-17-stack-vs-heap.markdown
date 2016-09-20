@@ -7,11 +7,14 @@ tag:
 - operating systems
 blog: true
 ---
+
 Stack and Heap are regions of the memory where values are
-stored. Values stored in the Stack will available until the current
+stored. Values stored in the Stack will be available until the current
 context of execution (function execution) finishes.  On the other
 hand, values stored in the Heap will be available until the program
-execution finishes or when the programmer say so.
+execution finishes or when the programmer say so. By understanding the
+difference between these two value stores, you should be able to
+determine the lifetime of a value throughout the program execution.
 
 Let us consider the following [program](https://gist.githubusercontent.com/minostro/b0d6456e8a888ddbc495536590bdbb06/raw/2d521298cb88bf9f6d7e1bd52c20fe574a8c39b6/store_variable_in_the_stack.c) in
 Language C.  The program first asks the user to enter the size of the
@@ -21,7 +24,7 @@ from `1` to `array_size`.
 
 {% gist b0d6456e8a888ddbc495536590bdbb06 %}
 
-Let us pretend now, that the user enters `7` as `array_size`.  Then our
+Let us say that the user enters `7` as `array_size`.  Then our
 program will create an array (`my_array`) of size `7` with values
 `[1, 2, 3, 4, 5, 6, 7]` in it.  Could you tell what would be the series
 printed by our program when executing **Line 17**?  Intuitively, one might
@@ -72,16 +75,16 @@ possible solutions to fix our program:
 function, or
 2. Keep the code as is, but put `my_array` in the Heap.
 
-Option 1 is not an acceptable solution (I’ll let the reader to
-determine why), so I will explain option 2.  Some programming
-languages, like Language C, allow programmers to choose which store to
-use for a particular value.  In this case, we want to store `my_array`
-in the Heap, so when initialize_array finishes the main function can
-still access the all the values that belong to `my_array`.
+Option 1 is not an acceptable solution (I’ll let the reader determine
+why), so I will explain option 2.  Some programming languages, like
+C Language, allow programmers to choose which store to use for a
+particular value.  In this case, we want to store `my_array` in the
+Heap, so when initialize_array finishes the main function can still
+access the all the values that belong to `my_array`.
 
 {% gist 654da94d1495f3b4e52739f9cc35ad1b %}
 
-As you can see in **Line 5**, our [program](https://gist.githubusercontent.com/minostro/654da94d1495f3b4e52739f9cc35ad1b/raw/be0fd27a82f6f76f67f2e779f4277b09ef8cabe0/store_variable_in_the_heap.c) is
+In **Line 5**, our [program](https://gist.githubusercontent.com/minostro/654da94d1495f3b4e52739f9cc35ad1b/raw/be0fd27a82f6f76f67f2e779f4277b09ef8cabe0/store_variable_in_the_heap.c) is
 calling `malloc` to allocate `my_array` in the Heap.  In this way, the
 main function can have access to the values of the array.  The
 following is the output of this new program:
@@ -98,11 +101,13 @@ value: 6
 value: 7
 {% endhighlight %}
 
-Nowadays, In modern programming languages (Java, Ruby, among others),
-the practice of allocating memory is not allowed anymore and it is
-called unsafe for a reason. You might think about the problems that
-can occur if you try to access a value that was already deleted (freed
-up) from the memory.
+Nowadays, In modern programming languages (Java, Ruby, Rust, Erlang,
+among others), the practice of allocating memory is not allowed
+anymore and it is called unsafe for a reason. This mean that the
+language somehow makes sure to reclaim any memory region that contains
+values that are not used (unreachable) anymore. You might think about
+the problems that can occur if you try to access a value that was
+already deleted (freed up) from the memory.
 
 Open Questions
 ------

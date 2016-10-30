@@ -47,7 +47,13 @@ Wanna talk about computers? Great! Let’s pick some Data Structure to implement
 
 {% gist 73eea58737720b99417f6bbfa185242a signature.erl %}
 
-The first thing we need to do when defining a module in Erlang is to define its API. As you might notice, the API contains all the operations (`operation_name/arity`) specified in the Queue Abstract Data Type and an extra one: `empty_queue/0`.  `empty_queue/0` is known to be a constant operation or a constructor. This operation does not belong to the Queue Abstract Data Type because when defining an ADT one ignores how values are constructed. After having the API defined, we can start implementing the functions.
+First we define an Erlang module by defining its API, which includes
+all the operations (`operation_name/arity`) specified in the Queue
+Abstract Data Type.This module also includes `empty_queue/0` as a
+constant constructor. This operation does not belong to the Queue
+Abstract Data Type because when defining an ADT one ignores how values
+are constructed. After having the API defined, we can start
+implementing the functions.
 
 {% gist 73eea58737720b99417f6bbfa185242a queue_adt.erl %}
 
@@ -55,7 +61,7 @@ I have chosen the Array Data Structure to implement the Queue ADT.  Don’t desp
 
 {% gist 73eea58737720b99417f6bbfa185242a queue_adt.rb %}
 
-When reading about the subject, I learned that Abstract Data Types can be fully formalized by using many-sorted algebras.  A many-sorted algebra is defined by the triple \\((N, ∑, E)\\); where \\(N\\) is the name of the algebra, \\(∑\\) is the signature of it, and \\(E\\) is the set of equations/operations.  \\(∑\\) is defined by the triple \\((S, OP, A)\\); where \\(S\\) is a set of sorts, \\(OP\\) the set of operations, and \\(A\\) represents the arities of the operations.  If we take a closer look at \\(∑\\) this looks a lot like the concept of an interface in the programming world.  Let’s define \\(∑_{queue}\\) for the Queue ADT:
+Abstract Data Types can be fully formalized by using many-sorted algebras.  A many-sorted algebra is defined by the triple \\((N, ∑, E)\\); where \\(N\\) is the name of the algebra, \\(∑\\) is the signature of it, and \\(E\\) is the set of equations/operations.  \\(∑\\) is defined by the triple \\((S, OP, A)\\); where \\(S\\) is a set of sorts, \\(OP\\) the set of operations, and \\(A\\) represents the arities of the operations.  If we take a closer look at \\(∑\\) this looks a lot like the concept of an interface in the programming world.  Let’s define \\(∑_{queue}\\) for the Queue ADT:
 
 ```
 S  = {Queue, Nat}

@@ -43,7 +43,13 @@ defining an ADT one ignores implementation details.
 ‘: This could be Nat, String, or a generic value.
 ```
 
-Wanna talk about computers? Great! Let’s pick some Data Structure to implement our Queue ADT. One of the things to consider in the implementation phase is to pick a Data Structure that makes efficient use of the computer’s resources. Array, Single Linked List, Doubly Linked List, among others are natural candidates to implement the Queue ADT. The following is an implementation, written in Erlang, of the Queue ADT using the Array Data Structure:
+Do you want to talk about computers? Great! Let’s pick some Data
+Structure to implement our Queue ADT. One of the things to consider in
+the implementation phase is to pick a Data Structure that makes
+efficient use of the computer’s resources. Arrays, Single Linked
+Lists, Doubly Linked Lists, and others, are natural candidates to
+implement the Queue ADT. The following is an implementation, written
+in Erlang, of the Queue ADT using the Array Data Structure:
 
 {% gist 73eea58737720b99417f6bbfa185242a signature.erl %}
 
@@ -84,4 +90,7 @@ E = {enqueue(Array, Nat) → Array,
 
 It is important to note that the signature \\(∑_{queue}\\) can be used to define different type of algebras.
 
-To summarize, Abstract Data Types (ADTs) are defined in terms of operations and its data.  Data Structures are used to implement ADTs in a way that the computer’s resources are used efficiently.  ADTs can be formally defined by using many-sorted algebras.
+To summarize, Abstract Data Types (ADTs) are defined in terms of its
+operations and data.  Data Structures are used to implement ADTs in a
+way that uses the computer’s resources efficiently.  ADTs can be
+formally defined by using many-sorted algebras.

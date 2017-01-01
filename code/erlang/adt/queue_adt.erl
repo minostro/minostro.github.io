@@ -5,14 +5,25 @@
 	 current/1]).
 
 empty_queue() ->
-  [].
+  {[], []}.
 
-enqueue(Queue, Element) ->
-  [Element | Queue].
+enqueue({[Value], []}, Element) ->
+  {[Element], [Value]};
+enqueue({In, Out}, Element) ->
+  {[Element | In], Out}.
 
-dequeue(Queue) ->
-  lists:droplast(Queue).
+dequeue({[], []}) ->
+  {error, queue_empty};
+dequeue({[_Head], []}) ->
+  {[], []};
+dequeue({In, [_Head | [Next | Rest]]}) ->
+  {In, [Next | Rest]};
+dequeue({In, [_Head | _Rest]}) ->
+  {[], lists:reverse(In)}.
 
-current(Queue) ->
-  lists:last(Queue).
-
+current({[], []}) ->
+  {error, queue_empty};
+current({[Current], []}) ->
+  Current;
+current({_In, [Current | _Rest]}) ->
+  Current.

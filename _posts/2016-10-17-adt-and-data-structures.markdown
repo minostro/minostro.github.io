@@ -49,7 +49,7 @@ the implementation phase is to pick a Data Structure that makes
 efficient use of the computer’s resources. Arrays, Single Linked
 Lists, Doubly Linked Lists, and others, are natural candidates to
 implement the Queue ADT. The following is an implementation, written
-in Erlang, of the Queue ADT using the Array Data Structure:
+in Erlang, of the Queue ADT using the a tuple that contains two lists:
 
 {% gist 73eea58737720b99417f6bbfa185242a signature.erl %}
 
@@ -63,11 +63,21 @@ implementing the functions.
 
 {% gist 73eea58737720b99417f6bbfa185242a queue_adt.erl %}
 
-I have chosen the Array Data Structure to implement the Queue ADT.  Don’t despair if you are not fluent in Erlang! I have written the same but in Ruby:
+I have chosen to implement the Queue ADT by using a pair that contains
+two lists: `In` and `Out`.  By doing this, the `enqueue`, `dequeue`,
+and `current` operations can be performed in O(1) (amortized).
 
 {% gist 73eea58737720b99417f6bbfa185242a queue_adt.rb %}
 
-Abstract Data Types can be fully formalized by using many-sorted algebras.  A many-sorted algebra is defined by the triple \\((N, ∑, E)\\); where \\(N\\) is the name of the algebra, \\(∑\\) is the signature of it, and \\(E\\) is the set of equations/operations.  \\(∑\\) is defined by the triple \\((S, OP, A)\\); where \\(S\\) is a set of sorts, \\(OP\\) the set of operations, and \\(A\\) represents the arities of the operations.  If we take a closer look at \\(∑\\) this looks a lot like the concept of an interface in the programming world.  Let’s define \\(∑_{queue}\\) for the Queue ADT:
+Abstract Data Types can be fully formalized by using many-sorted
+algebras.  A many-sorted algebra is defined by the triple \\((N, ∑,
+E)\\); where \\(N\\) is the name of the algebra, \\(∑\\) is the
+signature of it, and \\(E\\) is the set of equations/operations.
+\\(∑\\) is defined by the triple \\((S, OP, A)\\); where \\(S\\) is a
+set of sorts, \\(OP\\) the set of operations, and \\(A\\) represents
+the arities of the operations.  If we take a closer look at \\(∑\\)
+this looks a lot like the concept of an interface in the programming
+world.  Let’s define \\(∑_{queue}\\) for the Queue ADT:
 
 ```
 S  = {Queue, Nat}
@@ -75,13 +85,12 @@ OP = {enqueue(Queue, Nat) → Queue,
       dequeue(Queue) → Queue,
       current(Queue) → Nat}
 A  = {enqueue: 2, dequeue: 1, current: 1}
-
 ```
 
 Once the signature is defined, we can define an algebra for it:
 
 ```
-N = QueueArray
+N = QueueWithTwoLists
 ∑ = ∑queue
 E = {enqueue(Array, Nat) → Array,
      dequeue(Array) → Array,

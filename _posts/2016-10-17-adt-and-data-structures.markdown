@@ -67,8 +67,6 @@ I have chosen to implement the Queue ADT by using a pair that contains
 two lists: `In` and `Out`.  By doing this, the `enqueue`, `dequeue`,
 and `current` operations can be performed in O(1) (amortized).
 
-{% gist 73eea58737720b99417f6bbfa185242a queue_adt.rb %}
-
 Abstract Data Types can be fully formalized by using many-sorted
 algebras.  A many-sorted algebra is defined by the triple \\((N, ∑,
 E)\\); where \\(N\\) is the name of the algebra, \\(∑\\) is the

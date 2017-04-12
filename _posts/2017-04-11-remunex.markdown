@@ -5,4 +5,4 @@ date: 2017-04-11 20:24:00
 projects: true
 ---
 
-The user manual can be found here: http://htmlpreview.github.io/?https://github.com/minostro/remunex/blob/master/manual/html/main.html
+The user manual is (here)![https://minostro.gitbooks.io/remunex/content/]

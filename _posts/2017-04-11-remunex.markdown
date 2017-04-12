@@ -5,4 +5,4 @@ date: 2017-04-11 20:24:00
 projects: true
 ---
 
-The user manual is (here)![https://minostro.gitbooks.io/remunex/content/]
+The user manual is [here](https://minostro.gitbooks.io/remunex/content/)

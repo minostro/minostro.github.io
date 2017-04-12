@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "RemuneX"
+title: "RemuneX: A Payroll System Built with PyGTK+"
 date: 2017-04-11 20:24:00
-tag:
-- programming languages
 projects: true
 ---
+
+The user manual can be found here: http://htmlpreview.github.io/?https://github.com/minostro/remunex/blob/master/manual/html/main.html

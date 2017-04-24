@@ -10,5 +10,6 @@ RemuneX was built by using:
 * Python
 * PyGTK+
 * PostgreSQL 7.3.x
+* Glade - User Interface
 
 The user manual (spanish) is [here](https://minostro.gitbooks.io/remunex/content/).

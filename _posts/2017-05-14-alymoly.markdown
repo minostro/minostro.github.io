@@ -1,0 +1,17 @@
+---
+layout: post
+title: "AlyMoly: A Point of Sale System Built in Django"
+date: 2017-05-14 12:49:00
+projects: true
+---
+![Remunex](/assets/images/projects/Remunex.png)
+
+AlyMoly is a Point of Sale System built for a liquor store based in the city of Iquique, Chile. AlyMoly is a transactional system that processes product sales, product returns, and manages the inventory of the products. It can also generate reports regarding the transactions that happened in a given time range.
+
+AlyMoly was built by using:
+* Python 2.7
+* Django 1.10
+* PostgreSQL 9.5
+* JQuery and JQueryUI
+
+This was a joint effort between [Andrés Otárola](https://github.com/aotarola) and myself.

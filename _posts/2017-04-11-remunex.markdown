@@ -15,3 +15,5 @@ RemuneX was built by using:
 * Gazpacho/Tepache - User Interface
 
 The user manual (spanish) is [here](https://minostro.gitbooks.io/remunex/content/).
+
+I was the lead developer of this project.

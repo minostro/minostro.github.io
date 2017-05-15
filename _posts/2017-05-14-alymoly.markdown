@@ -6,13 +6,6 @@ projects: true
 ---
 AlyMoly is a Point of Sales System built for a liquor store based in the city of Iquique, Chile. AlyMoly is a transactional system that processes product sales, product returns, and manages the inventory of the products. It can also generate reports regarding transactions that happened in a given period of time.
 
-## Tech Stack
-* Python 2.7
-* Django 1.10
-* PostgreSQL 9.5
-* JQuery
-* JQueryUI
-
 ## Logical Diagram
 ![Logical Diagram](/assets/images/projects/alymoly/logical_diagram.png)
 
@@ -23,6 +16,7 @@ This module is meant to by used by Owner/Manager of the store. The user can:
 * CRUD[^1] products (including the stock)
 * CRUD users of the app
 * CRUD providers (including orders)
+
 [^1]: https://en.wikipedia.org/wiki/Create,_read,_update_and_delete
 
 ### Sales
@@ -34,6 +28,13 @@ This module is meant to be used by the Owner/Manager of the store to check the h
 ## Physical Diagram
 ![Logical Diagram](/assets/images/projects/alymoly/physical_diagram.png)
 Because of the size of the business, the application is running in just one machine. For convienence purposes, the application can accept requests from other computers whithin the network. This was done so the Owner/Manager of the store could interact withthe Inventory Management module without interrupting the sales process.
+
+## Tech Stack
+* Python 2.7
+* Django 1.10
+* PostgreSQL 9.5
+* JQuery
+* JQueryUI
 
 ## Learnings/Challenges
 * After that the first version of the UI was up and running, I soon realized that the shop assistants were struggling with usign the mouse to interact with the UI. Using the mouse was error prone (sometimes the click the wrong button) and also slow them down. I decided to change the UI so the could only use the keyboard to interact with the application if they wanted to. The use of mouse was not banned, but it was optional with the UI redesign.

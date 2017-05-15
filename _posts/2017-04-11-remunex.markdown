@@ -6,14 +6,13 @@ projects: true
 ---
 ![Remunex](/assets/images/projects/remunex/Remunex.png)
 
-RemuneX is a Payroll System built to be compliant with the Chilean Laws (2005). RemuneX can handle multiple companies and it can keep track of hours, calculate wages, withhold taxes and deductions, and print payslips. The source code is available in [GitHub](https://github.com/minostro/remunex).
+RemuneX is a Payroll System built to be compliant with the Chilean Laws (2005). RemuneX can handle multiple companies and it can keep track of hours, calculate wages, withhold taxes and deductions, and print payslips. The source code is available in [GitHub](https://github.com/minostro/remunex). The user's manual (Spanish) is [here](https://minostro.gitbooks.io/remunex/content/).
 
-RemuneX was built by using:
+## Tech Stack
 * Python
 * PyGTK+
 * PostgreSQL 7.3.x
 * Gazpacho/Tepache - User Interface
 
-The user manual (spanish) is [here](https://minostro.gitbooks.io/remunex/content/).
-
+## Role
 I was the lead developer of this project.

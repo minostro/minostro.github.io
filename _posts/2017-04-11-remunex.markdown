@@ -2,6 +2,8 @@
 layout: post
 title: "RemuneX: A Payroll System Built with PyGTK+"
 date: 2017-04-11 20:24:00
+tag:
+- Python
 projects: true
 ---
 ![Remunex](/assets/images/projects/remunex/Remunex.png)

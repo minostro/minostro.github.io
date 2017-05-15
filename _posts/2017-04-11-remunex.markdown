@@ -4,7 +4,7 @@ title: "RemuneX: A Payroll System Built with PyGTK+"
 date: 2017-04-11 20:24:00
 projects: true
 ---
-![Remunex](/assets/images/projects/Remunex.png)
+![Remunex](/assets/images/projects/remunex/Remunex.png)
 
 RemuneX is a Payroll System built to be compliant with the Chilean Laws (2005). RemuneX can handle multiple companies and it can keep track of hours, calculate wages, withhold taxes and deductions, and print payslips. The source code is available in [GitHub](https://github.com/minostro/remunex).
 

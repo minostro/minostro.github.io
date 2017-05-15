@@ -14,7 +14,7 @@ AlyMoly is a Point of Sales System built for a liquor store based in the city of
 * JQueryUI
 
 ## Logical Diagram
-![Logical Diagram](/assets/images/projects/alymoly/logical_diagram.svg)
+![Logical Diagram](/assets/images/projects/alymoly/logical_diagram.png)
 
 The application has three modules:
 
@@ -32,7 +32,7 @@ This module is meant to by used by the shop assistant when saling the products. 
 This module is meant to be used by the Owner/Manager of the store to check the health of the business.
 
 ## Physical Diagram
-![Logical Diagram](/assets/images/projects/alymoly/physical_diagram.svg)
+![Logical Diagram](/assets/images/projects/alymoly/physical_diagram.png)
 Because of the size of the business, the application is running in just one machine. For convienence purposes, the application can accept requests from other computers whithin the network. This was done so the Owner/Manager of the store could interact withthe Inventory Management module without interrupting the sales process.
 
 ## Learnings/Challenges

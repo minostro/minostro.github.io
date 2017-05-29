@@ -18,7 +18,7 @@ Meaculpa's is a Distributed Point of Sales System built for the biggest liquor s
 * *central* automatically creates orders for branches that are running out of inventory.
 
 ## Logical Diagram
-![Logical Diagram](/assets/images/projects/meaculpas/logical_diagram.png)
+![Central Logical Diagram](/assets/images/projects/meaculpas/central_logical_diagram.png)
 
 
 ## Physical Diagram

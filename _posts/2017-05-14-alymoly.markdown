@@ -8,6 +8,7 @@ tag:
 - JavaScript
 projects: true
 ---
+## Overview
 AlyMoly is a Point of Sales System built for a liquor store based in the city of Iquique, Chile. AlyMoly is a transactional system that processes product sales, product returns, and manages the inventory of the products. It can also generate reports regarding transactions that happened in a given period of time. The source code is hosted in [GitHub](https://github.com/CreceLibre/alymoly).
 
 ## Logical Diagram
@@ -33,7 +34,7 @@ This module is meant to be used by the Owner/Manager of the store to check the h
 ![Logical Diagram](/assets/images/projects/alymoly/physical_diagram.png)
 Because of the size of the business, the application is running in just one machine. For convienence purposes, the application can accept requests from other computers whithin the network. This was done so the Owner/Manager of the store could interact withthe Inventory Management module without interrupting the sales process.
 
-## Tech Stack
+## Software Stack
 * Python 2.7
 * Django 1.10
 * PostgreSQL 9.5

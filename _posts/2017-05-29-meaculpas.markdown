@@ -37,12 +37,6 @@ This is the main module that the shop assistants use to sale products.
 ![Central Logical Diagram](/assets/images/projects/meaculpas/central_logical_diagram.png)
 
 The subsystem has three main modules:
-#### Admin
-![Central UI](/assets/images/projects/meaculpas/central_ui.png)
-This module is meant to be used by the owners/managers to CRUD[^1] products, providers, store assistants, orders among others.
-
-[^1]: https://en.wikipedia.org/wiki/Create,_read,_update_and_delete
-
 #### Synchronization
 This module is in charge of keeping track of any changes of the objects that the *branch* is interested. This module also exposes a Restful API so the *branch* can get these data updates and also can pushes the transactional information.
 
@@ -51,6 +45,13 @@ This module is in charge of generating the invoices related to any sales that ha
 
 #### Reporting
 This module is in charge of generating all the reports that the upper management needs to see how the business is performing. The reports were at first were generated in a synchronous fashion, but as the volume of data increased, the reports needed to be generated in an asynchronous fashion.
+
+#### Admin
+![Central UI](/assets/images/projects/meaculpas/central_ui.png)
+This module is meant to be used by the owners/managers to CRUD[^1] products, providers, store assistants, orders among others.
+
+[^1]: https://en.wikipedia.org/wiki/Create,_read,_update_and_delete
+
 
 ## Software Stack
 * Python 2.7

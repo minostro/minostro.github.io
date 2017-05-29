@@ -23,12 +23,6 @@ Meaculpa's is a Distributed Point of Sales System built for the biggest liquor s
 ### Branch
 ![Branch Logical Diagram](/assets/images/projects/meaculpas/branch_logical_diagram.png)
 
-## Physical Diagram
-### Central
-![Central Logical Diagram](/assets/images/projects/meaculpas/central_logical_diagram.png)
-### Branch
-![Branch Logical Diagram](/assets/images/projects/meaculpas/branch_logical_diagram.png)
-
 ## Software Stack
 * Python 2.7
 * Django 1.10

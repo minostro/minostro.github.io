@@ -20,6 +20,7 @@ Meaculpa's is a Distributed Point of Sales System built for the biggest liquor s
 ## Logical Diagram
 ![Central Logical Diagram](/assets/images/projects/meaculpas/central_logical_diagram.png)
 
+![Branch Logical Diagram](/assets/images/projects/meaculpas/branch_logical_diagram.png)
 
 ## Physical Diagram
 ![Logical Diagram](/assets/images/projects/alymoly/physical_diagram.png)

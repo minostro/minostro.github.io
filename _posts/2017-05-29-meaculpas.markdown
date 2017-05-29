@@ -36,4 +36,4 @@ Meaculpa's is a Distributed Point of Sales System built for the biggest liquor s
 * Early releases of the application helped to keep engage the users of the application. Morever, it helped me to quickly iterate and the necessary changes to the application so it could met the requirements of the users.
 
 ## Role
-I implemented the UI as well as part of the modules/classes in the Backend Service. I worked in this project with [Andrés Otárola](https://github.com/aotarola). We both worked as contractors.
+I implemented the UI as well as part of the modules/classes in the Backend Service. I worked on this project with [Andrés Otárola](https://github.com/aotarola). We both worked as contractors.

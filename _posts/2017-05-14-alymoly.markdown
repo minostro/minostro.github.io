@@ -47,4 +47,4 @@ Because of the size of the business, the application is running in just one mach
 * Early releases of the application helped to keep the users of the application engaged. Moreover, it helped me to quickly iterate to make the necessary changes to the application so it could met the users requirements.
 
 ## Role
-I implemented the UI as well as part of the modules/classes in the Backend Service. I worked in this project with [Andrés Otárola](https://github.com/aotarola). We both worked as contractors.
+I implemented the UI as well as part of the modules/classes in the Backend Service. I worked on this project with [Andrés Otárola](https://github.com/aotarola). We both worked as contractors.

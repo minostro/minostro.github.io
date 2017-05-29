@@ -17,9 +17,9 @@ AlyMoly is a Point of Sales System built for a liquor store based in the city of
 The application has three modules:
 
 ### Admin
-This module is meant to by used by Owner/Manager of the store. The user can:
-* CRUD[^1] products (including the stock)
-* CRUD users of the app
+This module is meant to be used by Owner/Manager of the store. The user can:
+* CRUD[^1] products (including the inventory)
+* CRUD users of the application
 * CRUD providers (including orders)
 
 [^1]: https://en.wikipedia.org/wiki/Create,_read,_update_and_delete
@@ -32,7 +32,7 @@ This module is meant to be used by the Owner/Manager of the store to check the h
 
 ## Physical Diagram
 ![Logical Diagram](/assets/images/projects/alymoly/physical_diagram.png)
-Because of the size of the business, the application is running in just one machine. For convenience purposes, the application can accept requests from other computers within the network. This was done so the Owner/Manager of the store could interact with the Admin module module without interrupting the sales process.
+Because of the size of the business, the application is running in just one machine. For convenience, the application can accept requests from other computers within the network. This was done so the Owner/Manager of the store could interact with the Admin module module without interrupting the sales process.
 
 ## Software Stack
 * Python 2.7

@@ -16,7 +16,7 @@ AlyMoly is a Point of Sales System built for a liquor store based in the city of
 
 The application has three modules:
 
-### Inventory Management
+### Admin
 This module is meant to by used by Owner/Manager of the store. The user can:
 * CRUD[^1] products (including the stock)
 * CRUD users of the app
@@ -25,14 +25,14 @@ This module is meant to by used by Owner/Manager of the store. The user can:
 [^1]: https://en.wikipedia.org/wiki/Create,_read,_update_and_delete
 
 ### Sales
-This module is meant to by used by the shop assistant when saling the products. All the sales are captured/recorded at the shift level to have more granular level of details.
+This module is meant to by used by the shop assistant when selling the products. All the sales are captured/recorded at the shift level to have more granular level of details.
 
 ### Reporting
 This module is meant to be used by the Owner/Manager of the store to check the health of the business.
 
 ## Physical Diagram
 ![Logical Diagram](/assets/images/projects/alymoly/physical_diagram.png)
-Because of the size of the business, the application is running in just one machine. For convienence purposes, the application can accept requests from other computers whithin the network. This was done so the Owner/Manager of the store could interact withthe Inventory Management module without interrupting the sales process.
+Because of the size of the business, the application is running in just one machine. For convenience purposes, the application can accept requests from other computers within the network. This was done so the Owner/Manager of the store could interact with the Admin module module without interrupting the sales process.
 
 ## Software Stack
 * Python 2.7
@@ -42,9 +42,9 @@ Because of the size of the business, the application is running in just one mach
 * JQueryUI
 
 ## Learnings/Challenges
-* After that the first version of the UI was up and running, I soon realized that the shop assistants were struggling with usign the mouse to interact with the UI. Using the mouse was error prone (sometimes the click the wrong button) and also slow them down. I decided to change the UI so the could only use the keyboard to interact with the application if they wanted to. The use of mouse was not banned, but it was optional with the UI redesign.
-* The Owner/Manager of the store did not have previous training using computers. The training part was more challenged as the Owner needed to learn how to use computers and the application.
-* Early releases of the application helped to keep engage the users of the application. Morever, it helped me to quickly iterate and the necessary changes to the application so it could met the requirements of the users.
+* After the first version release of the UI, I soon realized that the shop assistants were struggling with using the mouse to interact with the UI. Using the mouse was error prone (sometimes they clicked the wrong button) and also slow them down. I decided to change the UI so they could only use the keyboard to interact with the application if they wanted to. The use of mouse was not banned, but it was optional with the UI redesign.
+* The Owner/Manager of the store did not have previous training using computers. The training part was more challenged as the Owner needed to learn how to use computers and the application itself.
+* Early releases of the application helped to keep the users of the application engaged. Moreover, it helped me to quickly iterate to make the necessary changes to the application so it could met the users requirements.
 
 ## Role
 I implemented the UI as well as part of the modules/classes in the Backend Service. I worked in this project with [Andrés Otárola](https://github.com/aotarola). We both worked as contractors.

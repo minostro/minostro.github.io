@@ -1,0 +1,106 @@
+---
+layout: post
+title: "Extending The AspectBench Compiler to Implement Join Point Interfaces in AspectJ"
+date: 2017-05-30 12:49:00
+tag:
+- Java
+- Aspect Oriented Programming
+projects: true
+---
+## Overview
+Join Point Interfaces is an abstraction which by design supports modular reasoning and independent evolution by decoupling aspects from base code and by providing a modular type-checking algorithm. In this post, I want to share with you [how](https://svn.sable.mcgill.ca/abc/trunk/aop/abc-ja-exts/src-jpi/abc/ja/jpi/) I extended the ABC compiler to implement this new abstraction as part of the AspectJ Programming Language. This work was part of my [master's thesis](/assets/documents/projects/jpi/master_thesis.pdf). [Éric Tanter](https://pleiad.cl/people/etanter) and [Eric Bodden](http://www.bodden.de/) were my advisors, and this was a joint work with them.
+
+## AspectJ in a nutshell
+Let's consider the following e-commerce application in which a customer can check out a product by either buying or renting the product.
+
+{% gist 5ed4a4e5c1377b0cc88476aa00c7f7d0 ShoppingSession.java%}
+
+Let's now pretend that we need to implement a new business rule states that, on his/her birthday, the customer is given a 5% discount when checking out a product. To implement this logic, we can implement the $$Discount$$ aspect:
+
+{% gist 5ed4a4e5c1377b0cc88476aa00c7f7d0 Discount.aj %}
+
+We define a pointcut named CheckingOut (Lines 2 - 4), which captures every execution of the $$checkOut$$ method ($$ShoppingSession.java$$, Line 5). This pointcut is defined in terms of two built-in AspectJ pointcuts: $$execution$$ and $$args$$. The $$execution(* ShoppingSession.checkOut(..))$$ means that we want to pick out every join point that is a method execution defined on $$ShoppingSession$$ whose name is checkOut regardless of its return type (the $$\\*$$ wildcard) and parameters (the $$\\..$$ wildcard). The $$args(*, pPrice, *, pCustomer)$$ means that we want to pick out every join point that has four arguments and also the second argument must be of type $$double$$ and the fourth argument must be of type $$Customer$$. To implement the birthday discount rule, we define an $$advice$$ (Lines 6 - 9) that is associated with the pointcut $$checkingOut$$ (Line 2). As it can be noticed, we use an $$around$$ $$advice$$ because we need to take full control over the join point computation: the total amount and customer values are modified accordingly to the discount rule and then the checkOut method is invoked via the call to $$proceed()$$.
+
+## Using Join Point Interfaces
+The first step to use Join Point Interfaces is to define one for this case:
+
+{% gist 5ed4a4e5c1377b0cc88476aa00c7f7d0 CheckingOutJPI.aj %}
+
+After this, the $$around$$ $$advice$$ defined in the $$Discount$$ aspect needs to be modified to reference the $$CheckingOut$$ jpi.
+
+{% gist 5ed4a4e5c1377b0cc88476aa00c7f7d0 DiscountAspectWithJPI.aj %}
+
+The last step is to modify the $$ShoppingSession$$ to explicitly raise $$CheckingOut$$ join points:
+
+{% gist 5ed4a4e5c1377b0cc88476aa00c7f7d0 ShoppingSessionWithJPI.java %}
+
+## Extending The AspectBench Compiler
+The AspectBench Compiler (abc) is an extensible compiler for AspectJ. abc is a framework for implementing AspectJ extensions, which truly allows easy experimentation with new language features. This is the main reason for using abc to develop an AspectJ extension which fully implements the ideas proposed in this thesis work.
+
+The four main components that abc implements are: $$frontend$$, $$matcher$$, $$weaver$$, and $$backend$$. The frontend, implemented by using JastAdd [^1], is in charge of both lexer and parser processes, and, also performs semantics checks such as type-checking, name analysis, among others. The matcher component tests every pointcut definition, that belong to an advice declaration on all join points located in the base code. The weaver component introduces in each join point a call to those advice definitions where the associated pointcut definition matches. The backend component, which is partly implemented by using Soot[^2], is in charge of performing certain code optimizations and finally generates the Java bytecode.
+
+[^1]: Ekman, T. and Hedin, G. 2007. The jastadd extensible java compiler. In Proceedings of the 22nd annual ACM SIGPLAN conference on Object-oriented programming systems and applications. OOPSLA ’07. ACM, New York, NY, USA, 1–18.
+[^2]: Raja Vallée-Rai, Laurie Hendren, V. S. P. L. E. G. and Co, P. 1999. Soot - a java optimization framework. In Proceedings of CASCON 1999. 125–135.
+
+The following figure shows, in a high-level overview, how the above described components interact with each other. A further detailed explanation can be found in [Avgustinov et al., 2005][^3]. As shown in this diagram, the frontend and the backend have been split into two decoupled components.
+
+[^3]: Avgustinov, P., Christensen, A. S., Hendren, L., Kuzins, S., Lhoták, J., Lhoták, O., de Moor, O., Sereni, D., Sittampalam, G., and Tibble, J. 2005. abc: An extensible AspectJ compiler. In Proceedings of the 4th ACM International Conference on Aspect-Oriented Software Development (AOSD 2005). ACM, Chicago, Illinois, USA, 87–98.
+
+![ABC Overview](/assets/images/projects/jpi/abc-overview.png)
+
+### Syntax Extension
+The first step of our implementation is to extend the syntax of AspectJ in order to support three new constructs: $$join$$ $$point$$ $$interfaces$$, $$exhibits$$ clauses, and advices referring to join point interfaces definitions. To this end, we extend the $$lexer$$, $$parser$$ and the $$abstract$$ $$grammar$$. A join point interface is represented by the $$jpi$$ keyword and it can appear anywhere a type declaration like $$aspect$$ or $$class$$ could. The $$exhibits$$ clause is represented by the $$exhibits$$ keyword and it can appear in the body declaration of either aspects or classes. Advice declarations can be defined as in normal AspectJ, but now they can refer either to a join point interface definition or to a pointcut expression.
+
+#### Extending The Lexer
+Extending the lexer Implementing the JPIs extension requires adding two new keywords: jpi and exhibits. As shown in the following snippet (Line 2), we use the $$addGlobalKeyword$$ to add these keywords. Since adding both $$jpi$$ and $$exhibits$$ are quite similar, the addition of exhibits is commented out. By using the $$addGlobalKeyword$$ our keywords will be added to all lexer states: $$JAVA$$, $$ASPECTJ$$, $$POINTCUT$$, and $$POINTCUTIFEXPR$$. The abc lexer has to be stateful because it must recognize different tokens in different contexts. This is because the lexical analysis of AspectJ needs to be aware of the fact that different languages are present: Java code, aspect definitions, and pointcut definitions. As an example of that, notice that in Line 6, we change the lexer status to the $$POINTCUT$$ state. This happens after both $$jpi$$ and $$exhibits$$ are consumed by the lexer, and the reason to change to that specific state is because both $$exhibits$$ and $$jpi$$, potentially, could have attached a pointcut expression.
+
+{% gist 5ed4a4e5c1377b0cc88476aa00c7f7d0 NewKeywords.java %}
+
+#### Extending The Parser
+Once we have introduced the new keywords, we need to extend the parser to add the new productions to the grammar. We begin by extending the already existing grammar rules as shown in the snippet below. First, we extend $$type\_declaration$$ with a new production called $$jpi\_declaration$$ (Line 1) which allows a $$jpi$$ definition to appear anywhere a normal type declaration like classes or aspects could. As can be noted, it is possible to assign identifiers –names after colon– to the matching symbols in order to perform certain operations within Java. Then, we extend $$class\_member\_declaration$$ with the $$exhibit\_declaration$$ production (Line 3) which allows the exhibits clause to be defined as a normal method definition in either classes or aspects. Finally, we extend the $$aspect\_body\_declaration$$ with the $$cjp\_advice\_declaration$$ production (Line 5) which allows advices referring to a jpi definition to be considered part of the advice definitions. This means that $$cjp\_advice\_declaration$$ defines the new syntax representation of before, around, after, after throwing, and after returning advices. The $$cjp\_advice\_declaration$$ is an existing production defined in the implementation of Closure Join Points[^4].
+
+[^4]: Bodden, E. 2011. Closure joinpoints: block joinpoints without surprises. In Proceedings of the 10th ACM International Conference on Aspect-Oriented Software Development (AOSD 2011). ACM, Porto de Galinhas, Brazil, 117–128.
+
+{% gist 5ed4a4e5c1377b0cc88476aa00c7f7d0 JPIProductions.java %}
+
+#### Adding new AST Nodes
+The last step to complete the extension is to add new elements in the abstract grammar. As the following snippet shows, we represent a $$join$$ $$point$$ $$interface$$ through a new AST node called $$JPITypeDecl$$. An $$exhibits$$ clause is represented by the new AST node called $$ExhibitBodyDecl$$. An advice that refers to a join point interface is represented by an $$CJPAdviceDecl$$ AST node.
+
+{% gist 5ed4a4e5c1377b0cc88476aa00c7f7d0 AbstractGrammar.java %}
+
+As it can be seen, the $$JPITypeDecl$$ defines new additional attributes such as $$ReturnType$$, $$Parameters$$, among others. Also, this new AST node inherits from the abc’s abstract $$TypeDecl$$ node. In this case, AST nodes referring to JPIs through nodes of the type TypeAccess, automatically inherit all the functionality needed to correctly take into account import statements and the full system layout when determining the type declaration that a $$JPI$$ reference refers to: the frontend simply needs to invoke the method $$decls()$$ on the $$TypeAccess$$, and $$JastAdd$$ automatically computes the matching declarations.
+
+It is important to note that nodes which represent the advice declaration, $$CJPAdviceDecl$$ and $$CJPPointcutExpr$$, only inherit from the original AspectJ AST node without defining any new attributes. We will then add new behavior to these AST nodes in order to implement the advice-dispatch semantics. These kinds of AST nodes are introduced to remain the original syntax and semantics of AspectJ unchanged. We also introduce (Line 7) a child AST node for each different advice specification which contains an attribute, $$JPIName$$, specifying the access to a referenced JPI definition.
+
+### Advice-dispatch Semantics
+One of the most interesting aspects of our implementation is how we assure the correct dispatch semantics for advices referring to JPIs. Remember that our advices, syntactically, do not contain references to pointcut definitions. Instead, each one contains a reference to a given $$JPI$$ definition which can be associated with one or more $$exhibits$$ clauses. From those exhibits clauses the corresponding pointcuts are extracted and associated with the corresponding advice definition. In presence of polymorphic join points, this turns into a more intricate situation: We must ensure that the most specific advice of a certain JPI hierarchy gets executed. Let $$a$$ be the advice to compute the pointcut for, $$as$$ the set of other advices in the same aspect and $$es$$, the set of all $$exhibits$$ clauses in the program. Then we compute the pointcut for a as follows:
+
+![Advice-dispatch Semantics](/assets/images/projects/jpi/advice-dispatch-semantics.png)
+
+The equation[^5] for pc+ implements polymorphism: if $$a$$ refers to $$a.jpi$$ then $$a$$ will match not only on join points for $$a.jpi$$ itself, but also for all subtypes. The equation for $$pc−$$ implements advice overriding within the same aspect: if an advice $$a′$$ has the same kind as $$a$$ but refers to a more specific JPI type, then $$a′$$ overrides $$a$$, which means that $$a$$ will not execute for the join points of this JPI. For advice that has been declared final, pc− is simply skipped, so as to avoid overriding.
+
+As we previously described, we represent an advice referring to a JPI definition by means of a $$CJPAdviceDecl$$ AST node. The parser creates this AST node containing a special pointcut expression which is represented by the $$CJPPointcutExpr$$ AST node. In order to return the synthesized pointcut, we need to redefine the pointcut attribute defined in the $$CJPPointcutExpr$$ AST node to implement the equation described above. This attribute is invoked by the Separator component to store the pointcut expression in the AspectInfo structure.
+
+[^5]: ☐denotes kind-specific subtyping for advices: a′☐a means that a′ and a are of the same kind and a′.jpi < a.jpi.
+
+To illustrate how we calculate the synthesized pointcut expression corresponding to each $$CJPAdviceDecl$$ AST node, suppose that we have a $$Discount$$ aspect defining two around advices, one referring to the $$Buying$$ JPI definition and another referring to the $$BuyingBestSeller$$ JPI definition. Suppose also that the following sub-typing relation states for these two JPI definitions: $$BuyingBestSeller <: Buying$$. The synthesized pointcut expression for the advice referring to the $$Buying$$ JPI definition is calculated as follows: First, we calculate the value of $$pc+$$ by collecting the pointcut expressions attached to the exhibits clauses referring to $$Buying$$ or a subtype of it. In this case, we collect the pointcuts attached to $$exhibits$$ clauses referring to either $$Buying$$ or $$BuyingBestSeller$$, denoted by $$pc_{Buying}$$ and $$pc_{BestSeller}$$ correspondingly. Then, to calculate the value of $$pc−$$, we collect the subtypes of the given JPI which have defined an advice declaration in the current aspect. Considering these subtypes we collect the corresponding pointcut expressions. In this case, we collect the pointcut expressions attached to exhibits clauses referring to $$BuyingBestSeller$$. Finally, the synthesized pointcut expression is $$(pc_{Buying} ∨ pc_{BestSeller}) ∧ ¬pc_{BestSeller}$$
+
+To implement the above equation, our implementation has to overcome a few technical obstacles. Both advices and exhibits can opt for renaming certain parameter names of its bound JPI. This can lead to problems once we calculate a synthesized pointcut associated with an advice declaration: A pointcut could be defined binding different variable names. We undo this renaming by inlining those pointcuts with the corresponding parameter names defined in the advice declaration. Further, the pointcut $$pc−(a, as, es)$$ is used under negation. This raises an issue with argument-binding pointcuts, like $$this(a)$$, because they cannot be negated: if a pointcut does not match, there is no value that $$a$$ could be bound to. Fortunately, abc supports a way to close such pointcuts so that the variables do not appear free any longer. This is done by rewriting a pointcut such as $$this(a)$$ to $$(λa.this(a))$$; such a pointcut can be negated, and if $$a$$ is of type $$A$$, the negation is equivalent to $$!this(A)$$, which yields the semantics we need.
+
+### Modular Typechecking
+Another interesting aspect of our implementation is how we perform modular type-checking of both aspect and base code. JPIs are crucial in this process because the type-checking relies only on the type information defined in these interfaces. With this, we ensure that base code is type-checked without considering any type information from the aspect. The situation remains the same for type-checking the aspect.
+
+On the aspect side, we type-check aspects like in normal AspectJ, save for its advice definitions. First, we type-check the advice signature against the referenced JPI definition. We enforce that the advice signature must directly resemble the JPI definition. Then, we type-check the advice body definition. The advice body definition is type-checked as a normal method body, but considering the special case of calling proceed. Since a JPI definition represents the signature of the proceed within the advice body, we use the referenced JPI to type-check the calls to proceed. At this point, we ensure that proceed is invoked with the proper argument values like a normal method invocation. An interesting point here is exception handling. All exceptions thrown by proceed must be handled properly by the advice definition either by declaring to throw or by handling the exceptions via a $$try/catch$$ block. As it turns out, in plain AspectJ, such verifications do not exist. Consider the following example in plain AspectJ:
+
+{% gist 5ed4a4e5c1377b0cc88476aa00c7f7d0 ModularTypeChecking.java %}
+
+The above program is accepted by the static type system. Notice if the commented Line 7 were included, the type-checker would complain because the advice signature says nothing about throwing such an exception. In our implementation, we have equipped the $$Proceed$$ AST node with three new attributes to perform such verifications. The first attribute $$exceptionCollection$$ collects the exceptions that proceed could raise. These exceptions are those defined in the referenced JPI definition. The second attribute $$reachedException$$ checks if a $$try/catch$$ block handles certain exceptions thrown by proceed. The last attribute $$exceptionHandling$$ checks that the advice signature declares to throw the exceptions thrown by proceed and that are not handled by a $$try/catch$$ block.
+
+On the base code side, we need to ensure that join points, emitted via exhibits clauses, obey the contract imposed by its JPI definition. The type-checking is split in two. First, the pointcut associated with an exhibits clause has to bind all the arguments in the signature, using the pointcut designators $$this$$, $$target$$, and $$args$$. Then, both return and exception types have to be checked. This is performed whenever the associated pointcut matches certain join points. Here, the type system verifies that the matched join point representation has the same return and exception types of the referenced JPI definition. This guarantees that the advice always receives join points of the expected type.
+
+There are some checks related to the return and exception types are postponed until the advice weaving process. At implementation level, this implies that we need to have advice declarations and to define some new nodes into the AspectInfo structure to perform such verifications. Because of abc’s architecture, we need the advice definitions to perform type-checking over join points. Without advice definitions, it is impossible to perform this task. This is in clear tension with one of our main objectives to perform modular type-checking. In the case of the base code we do not want to use any information of the “real” aspect side. To address this situation we create a synthesized aspect called $$dummyAspect$$. This aspect is composed of around advice definitions that bind every JPI declaration that has at least one exhibits clause defined in the base code. The pointcut expression associated with these advices are calculated as explained in the Advice-dispatch Semantics section.
+
+Further, we need to introduce new nodes in the AspectInfo structure in order to implement the semantics of the type-checking at join point level. Concretely, we introduce $$CJPAdviceDecl$$ which represents, in the backend, an advice declaration referring to a JPI declaration. $$CJPAdviceDecl$$ has an attribute $$postResidue$$ to check the exception handling. The around advices, those introduced in the $$dummyAspect$$, are represented by $$CJPAroundAdvice$$ which has a $$matchesAt$$ attribute where the return type is checked. If some join point representation does not meet the contract imposed by the referenced JPI an exception is raised, causing abc to skip the whole compilation process.
+
+## Summary
+In this post, I described, in full generality, how I implemented Join Point Interfaces (JPIs) as an extension of the AspectBench compiler (abc) for AspectJ. The post turned out to be longer than I expected and I decided to omit the explanation of a couple of other features that were implemented to support JPIs.

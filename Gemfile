@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'jekyll'
+gem 'jekyll', '3'
 gem 'rake'
 gem 'rouge'
 gem 'html-proofer'
@@ -9,5 +9,8 @@ gem 'jekyll-mentions'
 gem 'jekyll-seo-tag'
 gem 'jekyll-feed'
 gem 'jekyll-sitemap'
-gem 'jekyll-gist'
 gem 'jekyll-paginate'
+
+group :jekyll_plugins do
+  gem 'jekyll-gist'
+end

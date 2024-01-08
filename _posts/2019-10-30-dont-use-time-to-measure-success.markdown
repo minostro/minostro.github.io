@@ -24,7 +24,7 @@ Two years ago, I used time as of the measurements for applying to companies. I g
 
 __Example 2: Living abroad__
 
-Six years ago, I moved to the U.S. My father asked me how long I was planning to stay abroad. You see! Time, again! 3 years, I said. __Results?__ I am still living abroad. Again, I was using time to answer this question. This year my parents visited me, and my dad asked me the exact same question. __Results?__ Dad, it’s not a matter of time but rather of savings. I would feel comfortable moving back when I have saved at least 1 million dollars.
+Six years ago, I moved to the U.S. My father asked me how long I was planning to stay abroad. You see! Time, again! 3 years, I said. __Results?__ I am still living abroad. Again, I was using time to answer this question. This year my parents visited me, and my dad asked me the exact same question. __Results?__ Dad, it’s not a matter of time but rather of savings. I would feel comfortable moving back when I have saved at least X amount of money.
 
 ___
 You can clearly see that using time was misleading in these situations. Using time was wrong because it wasn’t an indicator to determine that I was done/ready with my goals. Have you ever been in a situation where you used time to measure success and realized later that it wasn’t really the best way to measure it?

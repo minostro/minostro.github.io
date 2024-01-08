@@ -11,9 +11,29 @@ Organizations want to embrace remote work because they see the value of having t
 A worker is said to be performing remote work when they are situated far from the location of their teammates. This person can be working from home, a shared working space, or any other location. Remote work can be performed on a temporary or permanent basis.
 
 # Challenges
-Embracing remote work poses challenges at different levels of the organization.It is important to recognize that no oly Remote Workers are responsibles to making this work. The company and Co-located teammates are equually important on this. The following four sections of this post identify challenges these individuals will face and provide, wherever possible, some guidelines to help them overcome these challenges:
+Embracing remote work poses challenges at different levels of the organization.It is important to recognize that no oly Remote Workers are responsibles to making this work. The company and Co-located teammates are equually important on this. The following sections of this post identify challenges these individuals will face and provide, wherever possible, some guidelines to help them overcome these challenges:
 
 ## The Company
+This section covers some of the biggest challenges organizations / companies is faced with.
+
+### Remote Work Flavors
+* What type of remote work do we want to foster?
+** One remote worker in on team.
+** Half remote workers and half co-located workers on a team.
+** Fully remote workers on a team.
+* Do we want to support people working in different timezones?
+
+### Recruiting
+* Do we want to setup a headcount of remote workers?
+* Is recruiting remote workers any different from co-located workers?
+* What are the traits our remote wokers need to have?
+
+### Training
+* Do we need any special training for Engineering Managers?
+* Do we want to offer training to our Remote Workers to become successful at their roles?
+
+### Tools & Resources 
+* What type of tools are needed to foster remote work?
 
 ___
 ## Remote Workers
@@ -57,14 +77,4 @@ This section covers the biggest challenges that a co-located worker will face wi
 ### Community
 * Think of ways to include remote workers as part of your daily activities.
 * Set some time asised to have a "remote coffee" or a "happy hour" call with remote workers.
-
-___
-## Tools and Tips 
-### Pairing
-Tuple in an excellent remote pairing tool. It's very performant and now it supports 2+ in a session.
-
-### Sharing
-* Pastebin
-* File sharing
-
 

@@ -18,9 +18,9 @@ This section covers some of the biggest challenges organizations / companies is 
 
 ### Remote Work Flavors
 * What type of remote work do we want to foster?
-** One remote worker in on team.
-** Half remote workers and half co-located workers on a team.
-** Fully remote workers on a team.
+  - One remote worker in on team.
+  - Half remote workers and half co-located workers on a team.
+  - Fully remote workers on a team.
 * Do we want to support people working in different timezones?
 
 ### Recruiting
